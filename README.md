@@ -3,8 +3,9 @@
 **TODO:** Describe what your plugin does.
 
 ## Setup
-
-Install via the bundled [Plugin Manager](https://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html)
+- __Markdown__
+- Latex
+- Install via the bundled [Plugin Manager](https://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html)
 or manually using this URL:
 
     https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition/archive/master.zip
