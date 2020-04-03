@@ -27,7 +27,7 @@ plugin_author = "ziwei su"
 plugin_author_email = "iamsuziwei@hotmail.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition"
+plugin_url = "https://github.com/JackySu1994/OctoPrint-CMfgDataAcquisition"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
