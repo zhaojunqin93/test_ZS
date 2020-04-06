@@ -1,6 +1,6 @@
 # OctoPrint-Cmfgdataacquisition
 
-**TODO:** Describe what your plugin does.
+**Plugin for CMfg IIoT gateways - data acquisition, storage, and display.
 
 ## Setup
 - __Markdown__
@@ -10,9 +10,9 @@ or manually using this URL:
 
     https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition/archive/master.zip
 
-**TODO:** Describe how to install your plugin, if more needs to be done than just installing it via pip or through
-the plugin manager.
+**plugin_url = "https://github.com/JackySu1994/OctoPrint-CMfgDataAcquisition"
 
 ## Configuration
 
-**TODO:** Describe your plugin's configuration options (if any).
+**plugin_version = "0.1.0"
+**Please installing the Plugin in Python 3 environment.
