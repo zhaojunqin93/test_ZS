@@ -23,6 +23,7 @@ feedparser==5.2.1
 filetype==1.0.6
 flake8==3.7.9
 Flask==0.12.5
+Flask==0.12.5
 Flask-Assets==0.12
 Flask-Babel==0.12.2
 Flask-Login==0.4.1

@@ -19,8 +19,8 @@ import requests
 INFLUXDB_CLOUD_HOST = "https://us-central1-1.gcp.cloud2.influxdata.com"
 INFLUXDB_TOKEN = "E_s7vYYXrSNWdqGKBEJWl4kQhOrjw36s2iYViH0xcLlKu-wawUKjKBcUqhw9rE1VB1z5kEX89uSUqMdRgMZWVQ=="
 
-INFLUXDB_ORGID = "c9fb97df591a9e5f"
-INFLUXDB_BUCKETID = "7ca03f47b608c3f3"
+INFLUXDB_BUCKETID = "c9fb97df591a9e5f"
+INFLUXDB_ORGID = "7ca03f47b608c3f3"
 
 X_API_KEY = "F07E6EF39FE74433BD23541996E98FFA"
 
@@ -32,7 +32,7 @@ def data_convert_job(data):
     job_data = data.get("job")
     progress_data = data.get("progress")
 
-    job_progress_point = Point("job_progress").tag("X-API-KEY", "xxxxxxxx1")\
+    job_progress_point = Point("job_progress").tag("X-API-KEY", X_API_KEY)\
         .field("completion", progress_data.get("completion") if progress_data.get("completion") is not None else 0.0)\
         .field("filepos", progress_data.get("filepos"))\
         .field("printTime", progress_data.get("printTime"))\
@@ -47,7 +47,7 @@ def data_convert_job(data):
         if filament_info is None:
             break
 
-        job_info_point = Point("job_info").tag("X-API-KEY", "xxxxxxxx1")\
+        job_info_point = Point("job_info").tag("X-API-KEY", X_API_KEY)\
             .tag("filament", filament_toolname) \
             .field("averagePrintTime",
                    job_data.get("averagePrintTime", 0.0) if filament_info.get("averagePrintTime") is None else 0.0) \
@@ -82,7 +82,7 @@ def load_data_job():
     write_api = dbClient.write_api()
 
     for data_point in data_convert_job(res_job):
-        write_api.write(INFLUXDB_ORGID, INFLUXDB_ORGID, data_point)
+        write_api.write(INFLUXDB_BUCKETID, INFLUXDB_ORGID, data_point)
 
 
 # connection related data
@@ -91,7 +91,7 @@ def data_convert_connection(data):
     converted_data = []
     current_data = data.get("current")
 
-    connection_current_point = Point("connection_current").tag("X-API-KEY", "xxxxxxxx1")\
+    connection_current_point = Point("connection_current").tag("X-API-KEY", X_API_KEY)\
         .field("baudrate", current_data.get("baudrate"))\
         .field("port", current_data.get("port"))\
         .field("printerProfile", current_data.get("printerProfile"))\
@@ -114,7 +114,7 @@ def load_data_connection():
     write_api = dbClient.write_api()
 
     for data_point in data_convert_connection(res_connection):
-        write_api.write(INFLUXDB_ORGID, INFLUXDB_ORGID, data_point)
+        write_api.write(INFLUXDB_BUCKETID, INFLUXDB_ORGID, data_point)
 
 
 
@@ -125,7 +125,7 @@ def data_convert_printer(data):
     state_data = data.get("state")
     temperature_data = data.get("temperature")
 
-    printer_state_point = Point("printer_state").tag("X-API-KEY", "xxxxxxxx1")\
+    printer_state_point = Point("printer_state").tag("X-API-KEY", X_API_KEY)\
         .field("flags_cancelling", state_data.get("flags").get("cancelling"))\
         .field("flags_closedOrError", state_data.get("flags").get("error"))\
         .field("flags_finishing", state_data.get("flags").get("finishing"))\
@@ -139,7 +139,7 @@ def data_convert_printer(data):
         .field("text", state_data.get("text"))
     converted_data.append(printer_state_point)
 
-    printer_temperature_point = Point("printer_temperature").tag("X-API-KEY", "xxxxxxxx1")\
+    printer_temperature_point = Point("printer_temperature").tag("X-API-KEY", X_API_KEY)\
         .field("bed_actual", temperature_data.get("bed").get("actual") if temperature_data.get("bed").get("actual") is not None else 0.0)\
         .field("bed_offset", temperature_data.get("bed").get("offset") if temperature_data.get("bed").get("offset") is not None else 0.0)\
         .field("bed_target", temperature_data.get("bed").get("target") if temperature_data.get("bed").get("target") is not None else 0.0)\
@@ -167,7 +167,7 @@ def load_data_printer():
     write_api = dbClient.write_api()
 
     for data_point in data_convert_printer(res_printer):
-        write_api.write(INFLUXDB_ORGID, INFLUXDB_ORGID, data_point)
+        write_api.write(INFLUXDB_BUCKETID, INFLUXDB_ORGID, data_point)
 
 
 
@@ -185,7 +185,7 @@ def data_convert_printer_profiles(data, current_profile):
     specification_extruder = current_profile.get("extruder")
     specification_volume = current_profile.get("volume")
 
-    printer_profiles_specification_point = Point("printer_profiles_specification").tag("X-API-KEY", "xxxxxxxx1")\
+    printer_profiles_specification_point = Point("printer_profiles_specification").tag("X-API-KEY", X_API_KEY)\
             .tag("current_profile", current_profile)\
         .field("specification_axes_e_inverted", specification_axes_e.get("inverted"))\
         .field("specification_axes_e_speed", specification_axes_e.get("speed"))\
@@ -237,7 +237,7 @@ def load_data_printer_profile():
     write_api = dbClient.write_api()
 
     for data_point in data_convert_printer_profiles(res_printer_profiles, current_profile):
-        write_api.write(INFLUXDB_ORGID, INFLUXDB_ORGID, data_point)
+        write_api.write(INFLUXDB_BUCKETID, INFLUXDB_ORGID, data_point)
 
 
 class CmfgdataacquisitionPlugin(octoprint.plugin.SettingsPlugin,
