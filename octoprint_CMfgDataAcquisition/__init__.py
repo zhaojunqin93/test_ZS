@@ -50,17 +50,17 @@ def data_convert_job(data):
         job_info_point = Point("job_info").tag("X-API-KEY", X_API_KEY)\
             .tag("filament", filament_toolname) \
             .field("averagePrintTime",
-                   job_data.get("averagePrintTime", 0.0) if filament_info.get("averagePrintTime") is None else 0.0) \
-            .field("estimatedPrintTime", job_data.get("averagePrintTime", 0.0) if filament_info.get("estimatedPrintTime") is None else 0.0) \
-            .field("filament_length", filament_info.get("length", 0.0) if filament_info.get("length") is None else 0.0) \
-            .field("filament_volume", filament_info.get("volume", 0.0) if filament_info.get("volume") is None else 0.0) \
+                   job_data.get("averagePrintTime", 0.0) if filament_info.get("averagePrintTime") is not None else 0.0) \
+            .field("estimatedPrintTime", job_data.get("averagePrintTime", 0.0) if filament_info.get("estimatedPrintTime") is not None else 0.0) \
+            .field("filament_length", filament_info.get("length", 0.0) if filament_info.get("length") is not None else 0.0) \
+            .field("filament_volume", filament_info.get("volume", 0.0) if filament_info.get("volume") is not None else 0.0) \
             .field("file_date", job_data.get("file").get("date"))\
             .field("file_display", job_data.get("file").get("display")) \
             .field("file_name", job_data.get("file").get("name")) \
             .field("file_origin", job_data.get("file").get("origin"))\
             .field("file_path", job_data.get("file").get("path"))\
             .field("file_size", job_data.get("file").get("size")) \
-            .field("lastPrintTime", job_data.get("lastPrintTime", 0.0) if filament_info.get("lastPrintTime") is None else 0.0) \
+            .field("lastPrintTime", job_data.get("lastPrintTime", 0.0) if filament_info.get("lastPrintTime") is not None else 0.0) \
             .field("user", job_data.get("user"))
 
         converted_data.append(job_info_point)
@@ -71,6 +71,7 @@ def data_convert_job(data):
 def load_data_job():
     url = "http://octopi.local/api/job"
 
+	# Data request
     headers = {
         "X-Api-Key": X_API_KEY,
         "Content-Type": "application/json"
@@ -78,9 +79,11 @@ def load_data_job():
     res_job = requests.get(url, headers=headers).json()
     print(res_job)
 
+	# Connect InfluxDB Clould
     dbClient = InfluxDBClient(url=INFLUXDB_CLOUD_HOST, token=INFLUXDB_TOKEN)
     write_api = dbClient.write_api()
 
+	# Data Serialize
     for data_point in data_convert_job(res_job):
         write_api.write(INFLUXDB_BUCKETID, INFLUXDB_ORGID, data_point)
 
@@ -199,11 +202,11 @@ def data_convert_printer_profiles(data, current_profile):
         .field("specification_extruder_nozzleDiameter", specification_extruder.get("nozzleDiameter") if specification_extruder.get("nozzleDiameter") is not None else 0.0)\
         .field("specification_extruder_sharedNozzle", specification_extruder.get("sharedNozzle"))\
         .field("specification_volume_custom_box", specification_volume.get("custom_box"))\
-        .field("specification_volume_depth", specification_volume.get("depth") if specification_extruder.get("depth") is not None else 0.0)\
+        .field("specification_volume_depth", specification_volume.get("depth") if specification_volume.get("depth") is not None else 0.0)\
         .field("specification_volume_formFactor", specification_volume.get("formFactor"))\
-        .field("specification_volume_height", specification_volume.get("height") if specification_extruder.get("height") is not None else 0.0)\
+        .field("specification_volume_height", specification_volume.get("height") if specification_volume.get("height") is not None else 0.0)\
         .field("specification_volume_origin", specification_volume.get("origin"))\
-        .field("specification_volume_width", specification_volume.get("width") if specification_extruder.get("width") is not None else 0.0)\
+        .field("specification_volume_width", specification_volume.get("width") if specification_volume.get("width") is not None else 0.0)\
         .field("id", current_profile.get("id"))\
         .field("model", current_profile.get("model"))\
         .field("name", current_profile.get("name"))
