@@ -24,10 +24,10 @@ plugin_description = """Plugin for CMfg IIoT gateways - data acquisition, storag
 plugin_author = "ziwei su"
 
 # The plugin's author's mail address.
-plugin_author_email = "iamsuziwei@hotmail.com"
+plugin_author_email = "qin.zhaojun93@gmail.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/JackySu1994/OctoPrint-CMfgDataAcquisition"
+plugin_url = "https://github.com/qinzhaojun93/test_ZS"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
