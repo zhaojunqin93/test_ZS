@@ -17,12 +17,12 @@ import requests
 
 
 INFLUXDB_CLOUD_HOST = "https://us-central1-1.gcp.cloud2.influxdata.com"
-INFLUXDB_TOKEN = "E_s7vYYXrSNWdqGKBEJWl4kQhOrjw36s2iYViH0xcLlKu-wawUKjKBcUqhw9rE1VB1z5kEX89uSUqMdRgMZWVQ=="
+INFLUXDB_TOKEN = "e4Z0o1Xi9VlQH8V4Axuuf1gFNeAEdu1DXwcJ4ENpkjSIB9a67EEajiSN3GOu3JCOQakTjpPTxS2woXRseW-fPQ=="
 
-INFLUXDB_BUCKETID = "c9fb97df591a9e5f"
-INFLUXDB_ORGID = "7ca03f47b608c3f3"
+INFLUXDB_BUCKETID = "6bf8ad0732605327"
+INFLUXDB_ORGID = "b6cceae0afcd3264"
 
-X_API_KEY = "F07E6EF39FE74433BD23541996E98FFA"
+X_API_KEY = "B887E7558B4C4AA8A5EC1138F6E5F8D8"
 
 
 
@@ -314,12 +314,12 @@ class CmfgdataacquisitionPlugin(octoprint.plugin.SettingsPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="JackySu1994",
-				repo="OctoPrint-Cmfgdataacquisition",
+				user="qinzhaojun93",
+				repo="test_ZS",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition/archive/{target_version}.zip"
+				pip="https://github.com/qinzhaojun93/test_ZS/archive/{target_version}.zip"
 			)
 		)
 
