@@ -21,7 +21,7 @@ plugin_version = "0.1.0"
 plugin_description = """Plugin for CMfg IIoT gateways - data acquisition, storage, and display"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "ziwei su"
+plugin_author = "zhaojun qin"
 
 # The plugin's author's mail address.
 plugin_author_email = "qin.zhaojun93@gmail.com"
