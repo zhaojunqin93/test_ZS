@@ -4,15 +4,15 @@ layout: plugin
 id: CMfgDataAcquisition
 title: OctoPrint-Cmfgdataacquisition
 description: Plugin for CMfg IIoT gateways - data acquisition, storage, and display
-author: ziwei su
+author: zhaojun qin
 license: AGPLv3
 
 # TODO
-date: today's date in format YYYY-MM-DD, e.g. 2015-04-21
+date: today's date in format YYYY-MM-DD, e.g. 2021-02-01
 
-homepage: https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition
-source: https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition
-archive: https://github.com/JackySu1994/OctoPrint-Cmfgdataacquisition/archive/master.zip
+homepage: https://github.com/zhaojunqin93/test_ZS
+source: https://github.com/zhaojunqin93/test_ZS
+archive: https://github.com/zhaojunqin93/test_ZS/archive/master.zip
 
 # TODO
 # Set this to true if your plugin uses the dependency_links setup parameter to include
